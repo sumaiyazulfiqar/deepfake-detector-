@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style-MATE AI | Smart Fashion Assistant</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-crown"></i>
+                <span>Style-MATE</span>
+                <small>AI</small>
+            </div>
+            <div class="nav-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#collection">Collection</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <div class="nav-actions">
+                <button class="icon-btn"><i class="fas fa-search"></i></button>
+                <button class="icon-btn cart-btn">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </button>
+                <button class="menu-toggle" onclick="toggleMobileMenu()">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="#home">Home</a>
+        <a href="#collection">Collection</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-badge">
+                <i class="fas fa-robot"></i>
+                <span>Powered by AI</span>
+            </div>
+            <h1>Your Personal<br><span class="gradient-text">Fashion Assistant</span></h1>
+            <p>Discover perfect outfits with our AI chatbot. Tell us your budget, occasion, or style - we'll find the perfect match for you!</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="scrollToCollection()">
+                    <i class="fas fa-shopping-bag"></i>
+                    Shop Now
+                </button>
+                <button class="btn-secondary" onclick="openChat()">
+                    <i class="fas fa-comments"></i>
+                    Chat with AI
+                </button>
+            </div>
+            <div class="hero-stats">
+                <div class="stat">
+                    <span class="stat-number">500+</span>
+                    <span class="stat-label">Products</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">24/7</span>
+                    <span class="stat-label">AI Support</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-number">10k+</span>
+                    <span class="stat-label">Happy Customers</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="hero-image-wrapper">
+                <img src="https://images.unsplash.com/photo-1595777457583-95e059d581b8?w=600&h=800&fit=crop" alt="Fashion Model">
+                <div class="floating-card card-1">
+                    <i class="fas fa-magic"></i>
+                    <span>AI Recommendations</span>
+                </div>
+                <div class="floating-card card-2">
+                    <i class="fas fa-tag"></i>
+                    <span>Best Prices</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filters Section -->
+    <section class="filters-section" id="collection">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Collection</h2>
+                <p>Browse through our exclusive range of traditional and modern wear</p>
+            </div>
+            
+            <div class="filters-bar">
+                <div class="filter-group">
+                    <label>Budget:</label>
+                    <select id="budgetFilter" onchange="applyFilters()">
+                        <option value="all">All Prices</option>
+                        <option value="2000">Under Rs. 2,000</option>
+                        <option value="3000">Under Rs. 3,000</option>
+                        <option value="5000">Under Rs. 5,000</option>
+                        <option value="8000">Under Rs. 8,000</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Category:</label>
+                    <select id="categoryFilter" onchange="applyFilters()">
+                        <option value="all">All Categories</option>
+                        <option value="casual">Casual Wear</option>
+                        <option value="formal">Formal Wear</option>
+                        <option value="bridal">Bridal Collection</option>
+                        <option value="eid">Eid Special</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Size:</label>
+                    <select id="sizeFilter" onchange="applyFilters()">
+                        <option value="all">All Sizes</option>
+                        <option value="S">Small</option>
+                        <option value="M">Medium</option>
+                        <option value="L">Large</option>
+                        <option value="XL">X-Large</option>
+                    </select>
+                </div>
+                <button class="btn-filter" onclick="resetFilters()">
+                    <i class="fas fa-undo"></i> Reset
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Grid -->
+    <section class="products-section">
+        <div class="container">
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Why Choose Our AI Assistant?</h2>
+                <p>Smart shopping experience tailored just for you</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Smart Recommendations</h3>
+                    <p>AI understands your style preferences and suggests perfect matches</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-language"></i>
+                    </div>
+                    <h3>Urdu & English</h3>
+                    <p>Chat in your preferred language - Roman Urdu fully supported</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-wallet"></i>
+                    </div>
+                    <h3>Budget Friendly</h3>
+                    <p>Set your budget and get options within your range instantly</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-truck-fast"></i>
+                    </div>
+                    <h3>Quick Delivery</h3>
+                    <p>3-5 days delivery with real-time order tracking</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Chat Widget -->
+    <div class="chat-widget" id="chatWidget">
+        <div class="chat-toggle" onclick="toggleChat()">
+            <i class="fas fa-robot"></i>
+            <span class="chat-badge">1</span>
+        </div>
+        
+        <div class="chat-window" id="chatWindow">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <div class="chat-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="chat-title">
+                        <h4>Style Assistant</h4>
+                        <span class="online-status">
+                            <i class="fas fa-circle"></i> Online
+                        </span>
+                    </div>
+                </div>
+                <button class="chat-close" onclick="toggleChat()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="chat-messages" id="chatMessages">
+                <div class="message bot-message">
+                    <div class="message-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="message-content">
+                        <p>Assalam-o-Alaikum! 👋<br>I'm your AI shopping assistant. How can I help you today?</p>
+                        <span class="message-time">Just now</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-suggestions">
+                <button onclick="sendQuickMessage('Eid collection dikhayein')">Eid Collection</button>
+                <button onclick="sendQuickMessage('3000 budget mein kya hai?')">Under 3000</button>
+                <button onclick="sendQuickMessage('Red dress chahiye')">Red Dresses</button>
+            </div>
+            
+            <div class="chat-input-area">
+                <input type="text" id="chatInput" placeholder="Type your message..." onkeypress="handleChatKeypress(event)">
+                <button onclick="sendChatMessage()" class="send-btn">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div class="modal-overlay" id="orderModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Complete Your Order</h3>
+                <button class="modal-close" onclick="closeOrderModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="order-product-summary" id="orderProductSummary">
+                    <!-- Product details will be inserted here -->
+                </div>
+                <form id="orderForm" onsubmit="submitOrder(event)">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="customerName" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Phone Number</label>
+                            <input type="tel" id="customerPhone" placeholder="03xx-xxxxxxx" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Size</label>
+                            <select id="customerSize" required>
+                                <option value="">Select Size</option>
+                                <option value="S">Small</option>
+                                <option value="M">Medium</option>
+                                <option value="L">Large</option>
+                                <option value="XL">X-Large</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Delivery Address</label>
+                        <textarea id="customerAddress" placeholder="Enter complete address" rows="3" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Payment Method</label>
+                        <div class="payment-options">
+                            <label class="payment-option">
+                                <input type="radio" name="payment" value="cod" checked>
+                                <span><i class="fas fa-money-bill-wave"></i> Cash on Delivery</span>
+                            </label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit-order">
+                        <i class="fas fa-check-circle"></i>
+                        Confirm Order
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <i class="fas fa-crown"></i>
+                        <span>Style-MATE</span>
+                    </div>
+                    <p>Your AI-powered fashion destination. Find perfect outfits with smart recommendations.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    </div>
+                </div>
+                <div class="footer-links">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#collection">Collection</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Customer Service</h4>
+                    <ul>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Shipping Info</a></li>
+                        <li><a href="#">Returns</a></li>
+                        <li><a href="#">FAQ</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-phone"></i> 0300-1234567</p>
+                    <p><i class="fas fa-envelope"></i> hello@stylemate.pk</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Lahore, Pakistan</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Style-MATE AI. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
